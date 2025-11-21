@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
 
   def show
-    @project = Project.includes(:users, tasks: :tags).find(params[:id])
+    @project = Project.includes(:users, tasks: [ :tags, :comments ]).find(params[:id])
     @comment = Comment.new
   end
 
