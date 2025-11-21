@@ -5,11 +5,12 @@ Rails.application.routes.draw do
 
   root "projects#index"
   resources :projects do
-    resources :comments, only: [:create]
-    resources :assignment, only: [:create, :destroy]
+    resources :tasks
+    resources :comments, only: [ :create ]
+    resources :assignments, only: [ :create, :destroy ]
   end
   resources :tasks do
-    resources :comments, only: [:create]
+    resources :comments, only: [ :create ]
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
