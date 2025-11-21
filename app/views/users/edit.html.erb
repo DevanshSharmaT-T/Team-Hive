@@ -1,0 +1,25 @@
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+  <h2>Edit Profile: <%= @user.first_name %></h2>
+
+  <%= form_with(model: @user, local: true) do |form| %>
+    
+    <div style="margin-bottom: 15px;">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name, class: "form-control", style: "width: 100%;" %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :job_title %>
+      <%= form.text_field :job_title, class: "form-control", style: "width: 100%;" %>
+    </div>
+
+    <div style="margin-bottom: 15px; background: #e8f4f8; padding: 10px; border-radius: 4px;">
+      <label style="font-weight: bold;">Reports To (Manager)</label>
+      <p style="font-size: 0.8em; margin-bottom: 5px; color: #666;">Select the user who manages this employee.</p>
+      
+      <%= form.collection_select :manager_id, @potential_managers, :id, :email, { include_blank: "No Manager (CEO)" }, { style: "width: 100%; padding: 8px;" } %>
+    </div>
+
+    <%= form.submit "Update Profile", style: "background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer;" %>
+  <% end %>
+</div>

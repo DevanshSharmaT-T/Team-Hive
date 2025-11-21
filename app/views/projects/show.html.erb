@@ -12,7 +12,7 @@
 <ul>
   <% @project.assignments.each do |assignment| %>
     <li>
-      <strong><%= assignment.user.first_name %></strong> 
+      <strong><%= assignment.user.first_name %></strong> (<%= link_to "Edit", edit_user_path(assignment.user), style: "font-size: 0.8em;" %>)
       - <%= assignment.role %> 
       (Report to: <%= assignment.user.manager&.first_name || "CEO"%>)   -> joined at <%= assignment.joined_project_at %> <pre> </li> 
   <% end %>
@@ -38,6 +38,7 @@
 </div>
 
 <hr>
+
 <div style="background: #f0f0f0; padding: 15px; margin-bottom: 20px; border-left: 5px solid #333;">
   <h4>Create New Task</h4>
   
@@ -73,7 +74,7 @@
 <h3>Tasks</h3>
 <% @project.tasks.each do |task| %>
   <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-    <strong><%= task.title %></strong> 
+    <strong><%= link_to task.title, task_path(task) %></strong>
     (<%= task.priority %> priority)
     
     <br>
@@ -85,7 +86,7 @@
     <% end %>
 
     <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-      <em><%= task.comments.count %> Comments</em>
+      <em><%= task.comments.size %> Comments</em>
     </div>
   </div>
 <% end %>

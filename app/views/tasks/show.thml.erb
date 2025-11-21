@@ -1,0 +1,39 @@
+<div style="padding: 20px;">
+  <%= link_to "← Back to Project", project_path(@task.project), class: "btn btn-secondary" %>
+
+  <h1>Task: <%= @task.title %></h1>
+  
+  <div style="background: #eee; padding: 15px; margin: 20px 0; border-radius: 5px;">
+    <p><strong>Status:</strong> <%= @task.status.humanize %></p>
+    <p><strong>Priority:</strong> <%= @task.priority.humanize %></p>
+    <p><strong>Assigned Tags:</strong>
+      <% @task.tags.each do |tag| %>
+        <span style="background-color: <%= tag.tag_color %>; color: #fff; padding: 2px 6px; border-radius: 4px; margin-right: 5px;">
+          <%= tag.name %>
+        </span>
+      <% end %>
+    </p>
+  </div>
+
+  <hr>
+
+  <h3>Discussion</h3>
+  
+  <% @task.comments.each do |comment| %>
+    <div style="border-bottom: 1px solid #ddd; padding: 10px 0;">
+      <strong><%= comment.user.first_name %>:</strong> 
+      <%= comment.body %>
+      <small style="color: #999;">(<%= time_ago_in_words(comment.created_at) %> ago)</small>
+    </div>
+  <% end %>
+
+  <div style="margin-top: 20px; background: #f9f9f9; padding: 15px;">
+    <h4>Leave a reply</h4>
+    <%= form_with(model: [@task, @comment], local: true) do |form| %>
+      <div style="margin-bottom: 10px;">
+        <%= form.text_area :body, rows: 3, style: "width: 100%;", placeholder: "Type your comment here..." %>
+      </div>
+      <%= form.submit "Post Comment" %>
+    <% end %>
+  </div>
+</div>
