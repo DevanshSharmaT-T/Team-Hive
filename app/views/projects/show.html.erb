@@ -38,6 +38,36 @@
 </div>
 
 <hr>
+<div style="background: #f0f0f0; padding: 15px; margin-bottom: 20px; border-left: 5px solid #333;">
+  <h4>Create New Task</h4>
+  
+  <%= form_with(model: [@project, Task.new], local: true) do |form| %>
+    
+    <div style="margin-bottom: 10px;">
+      <%= form.label :title %>
+      <%= form.text_field :title, required: true %>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <%= form.label :priority %>
+      <%= form.select :priority, Task.priorities.keys.map { |w| [w.humanize, w] } %>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Tags:</label><br>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+          <div style="margin-right: 10px;">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= form.submit "Add Task", class: "btn btn-success" %>
+  <% end %>
+</div>
 
 
 <h3>Tasks</h3>
@@ -59,6 +89,7 @@
     </div>
   </div>
 <% end %>
+
 
 
 <hr>
