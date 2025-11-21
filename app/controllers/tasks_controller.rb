@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-    before_action :project_set
+    before_action :project_set, except: [:show]
 
     def create
         @task = @project.tasks.build(task_parameters)
@@ -15,6 +15,11 @@ class TasksController < ApplicationController
         @task = @project.task.find(params[:id])
         @task.destroy
         redirect_to @project, notice: "Task deleted sucessfully"
+    end
+
+    def show 
+        @task = Task.includes(:tags, comments: :user).find(params[:id])
+        @comment = Comment.new
     end
 
     private

@@ -11,10 +11,10 @@ class CommentsController < ApplicationController
  private
 
     def comment_parameters
-        params.require(:comment).require(:body)
+        params.require(:comment).permit(:body)
     end
 
-    def commenatble_set
+    def commentable_set
         #if project
         if params[:project_id]
             @commentable = Project.find(params[:project_id])
