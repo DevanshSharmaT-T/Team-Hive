@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  project: one
+  role: MyString
+  joined_project_at: 2025-11-21
+
+two:
+  user: two
+  project: two
+  role: MyString
+  joined_project_at: 2025-11-21
