@@ -3,7 +3,7 @@ class AssignmentsController < ApplicationController
     before_action :project_set
 
     def create
-        @assignment = @project.assignments.build(assignment_params)
+        @assignment = @project.assignments.build(assignment_parameters)
         @assignment.joined_project_at = Date.today
 
         if @assignment.save

@@ -1,5 +1,4 @@
 <h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
 
 <h1><%= @project.title %></h1>
 <p>Status: <%= @project.status %></p>
@@ -15,7 +14,7 @@
     <li>
       <strong><%= assignment.user.first_name %></strong> 
       - <%= assignment.role %> 
-      (Report to: <%= assignment.user.manager&.first_name || "CEO" %>) </li>
+      (Report to: <%= assignment.user.manager&.first_name || "CEO"%>)   -> joined at <%= assignment.joined_project_at %> <pre> </li> 
   <% end %>
 </ul>
 
