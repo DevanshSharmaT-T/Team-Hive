@@ -2,7 +2,7 @@ class Task < ApplicationRecord
 
   #Table
   # t.string :title, null: false
-  # t.text :descirption
+  # t.text :description
   # t.integer :priority, default: 0  #enum
   # t.integer :status, default: 0  #enum
   # t.references :project, null: false, foreign_key: true
@@ -18,8 +18,15 @@ class Task < ApplicationRecord
   enum status: { backlog: 0, in_progress: 1, done: 2 }
 
   #validations
-  validates :title, :descirption, presence: { message: "needed feilds" }
+  validates :title, :description, presence: { message: "needed feilds" }
   
+  def set_defaults
+    self.status ||= :backlog
+    self.priority ||= :low
+  end
 
+  scope :tasks_for_project, -> (project) { where(project_id: project.id)
+                                            .includes(:tags, :comments)
+                                            .order(created_at: :desc)     }
 
 end

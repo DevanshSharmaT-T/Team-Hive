@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :user_set
+  before_action :authenticate_user!
 
   def edit
     @potential_managers = User.where.not(id: @user.id)
@@ -12,6 +13,16 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def dashboard
+    @user = User.find(params[:id])
+  
+    # Self Joining to user
+    @manager = @user.manager
+    @subordinates = @user.subordinates
+  
+    @projects = @user.projects
   end
 
   private

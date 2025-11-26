@@ -2,14 +2,14 @@
 
 one:
   title: MyString
-  descirption: MyText
+  description: MyText
   pirotiy: 1
   status: 1
   project: one
 
 two:
   title: MyString
-  descirption: MyText
+  description: MyText
   pirotiy: 1
   status: 1
   project: two

@@ -48,6 +48,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'pry', '~> 0.15.2'
 end
 
 group :test do
@@ -55,3 +56,10 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem 'tailwindcss-rails', '~> 4.4'
+
+gem 'heroicon', '~> 1.0'
+gem "devise", "~> 4.9"
+
+gem "will_paginate", "~> 4.0"

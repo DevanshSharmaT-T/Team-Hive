@@ -1,0 +1,17 @@
+<%= form_with(model: [@commentable, Comment.new], id: "new_comment", local: true) do |form| %>
+      <div style="margin-bottom: 10px;">
+        <%= form.text_area :body, rows: 3, style: "width: 100%;" %>
+      </div>
+      <%= form.submit "Post Comment" %>
+    <% end %>
+
+<%= turbo_stream.append "comments_list" do %>
+    
+    <%= turbo_stream.replace "new_comment" do %>
+    <% end %>
+
+  <div style="background: #f9f9f9; padding: 10px; margin-bottom: 5px;">
+    <strong><%= @comment.user.first_name %>:</strong> <%= @comment.body %>
+  </div>
+<% end %>
+

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
   #Table
   # t.string :first_name, null: false
@@ -6,6 +10,8 @@ class User < ApplicationRecord
   # t.string :email, null: false, index: { unique: true }
   # t.references :manager, foreign_key: { to_table: :users }
 
+  devise :database_authenticatable, :registerable, :confirmable, :recoverable, stretches: 13
+  
   #HMT
   has_many :assignments
   has_many :projects, through: :assignments
@@ -23,5 +29,7 @@ class User < ApplicationRecord
       uniqueness: { message: "Alredy exist" },
       format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, message: "Invalid Email" }
   # validates_with UserValidator
+
+  scope :available_users_for_project, -> (project) { where.not( id: project.user_ids) }
 
 end
