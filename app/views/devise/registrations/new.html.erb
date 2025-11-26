@@ -1,42 +1,63 @@
-<div class=" flex items-center justify-center ">
-  <div class="bg-white p-8 rounded-2xl shadow-lg" style="width: 700px;">
-
+<div class="min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
     
-    <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">
+    <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">
       Create your account
     </h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-5" }) do |f| %>
+      
+      <% if resource.errors.any? %>
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-md">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="ml-3">
+              <h3 class="text-sm font-medium text-red-800">
+                <%= pluralize(resource.errors.count, "error") %> prohibited this account from being saved:
+              </h3>
+              <ul class="mt-2 text-sm text-red-700 list-disc list-inside">
+                <% resource.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
 
-      <div class="mb-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <%= f.label :first_name, class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= f.text_field :first_name, autofocus: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+        </div>
+        <div>
+          <%= f.label :last_name, class: "block text-sm font-semibold text-gray-700 mb-1" %>
+          <%= f.text_field :last_name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
+        </div>
+      </div>
+
+      <div>
         <%= f.label :email, class: "block text-sm font-semibold text-gray-700 mb-1" %>
-        <%= f.email_field :email,
-              autofocus: true,
-              autocomplete: "email",
-              placeholder: "Enter an email (example@example.com)",
-              class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: "you@example.com", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
       </div>
 
-      <div class="mb-4">
+      <div>
         <%= f.label :password, class: "block text-sm font-semibold text-gray-700 mb-1" %>
-
+        <%= f.password_field :password, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
         <% if @minimum_password_length %>
-          <p class="text-xs text-gray-500 mb-1">(<%= @minimum_password_length %> characters minimum)</p>
+          <p class="mt-1 text-xs text-gray-500">Must be at least <%= @minimum_password_length %> characters.</p>
         <% end %>
-
-        <%= f.password_field :password,
-              autocomplete: "new-password",
-              class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" %>
       </div>
 
-      <div class="mb-6">
-        <%= f.label :password_confirmation, class: "block text-sm font-semibold text-gray-700 mb-1" %>
-        <%= f.password_field :password_confirmation,
-              autocomplete: "new-password",
-              class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" %>
+      <div>
+        <%= f.label :password_confirmation, "Confirm Password", class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" %>
       </div>
-
+      <br>
       <div>
         <%= f.submit "Sign up",
             class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition" %>
@@ -46,6 +67,7 @@
     <div class="text-center mt-6">
       <%= render "devise/shared/links" %>
     </div>
+
 
   </div>
 </div>

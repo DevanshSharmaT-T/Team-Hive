@@ -12,7 +12,7 @@ class TasksController < ApplicationController
     def create
         # binding.pry
         @task = @project.tasks.build(task_parameters)
-        # binding.pry
+        binding.pry
         if @task.save
             redirect_to @project, notice: "Task saved successfully"
         else
