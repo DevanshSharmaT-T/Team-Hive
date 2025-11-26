@@ -26,7 +26,6 @@ class Task < ApplicationRecord
                                             .includes(:tags, :comments)
                                             .order(created_at: :desc)     }
 
-
   private
     def set_defaults
       self.status ||= :backlog
