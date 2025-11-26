@@ -9,6 +9,8 @@ class Task < ApplicationRecord
 
   belongs_to :project
 
+  before_save :set_defaults
+
   #HM and BTM
   has_and_belongs_to_many :tags
 
@@ -20,13 +22,15 @@ class Task < ApplicationRecord
   #validations
   validates :title, :description, presence: { message: "needed feilds" }
   
-  def set_defaults
-    self.status ||= :backlog
-    self.priority ||= :low
-  end
-
   scope :tasks_for_project, -> (project) { where(project_id: project.id)
                                             .includes(:tags, :comments)
                                             .order(created_at: :desc)     }
+
+
+  private
+    def set_defaults
+      self.status ||= :backlog
+      self.priority ||= :low
+    end
 
 end
