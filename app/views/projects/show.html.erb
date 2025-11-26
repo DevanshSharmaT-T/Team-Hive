@@ -1,113 +1,51 @@
-<h1>Projects#show</h1>
-
-<h1><%= @project.title %></h1>
-<p>Status: <%= @project.status %></p>
-
-
-<hr>
-
-
-<h3>Team Members</h3>
-
-<ul>
-  <% @project.assignments.each do |assignment| %>
-    <li>
-      <strong><%= assignment.user.first_name %></strong> (<%= link_to "Edit", edit_user_path(assignment.user), style: "font-size: 0.8em;" %>)
-      - <%= assignment.role %> 
-      (Report to: <%= assignment.user.manager&.first_name || "CEO"%>)   -> joined at <%= assignment.joined_project_at %> <pre> </li> 
-  <% end %>
-</ul>
-
-<div style="background: #eef; padding: 15px; margin-top: 20px; border-radius: 5px;">
-  <h4>Add New Member</h4>
+<div class="max-w-6xl mx-auto mt-6">
+  <div class="mb-8 flex items-center gap-6 w-full">
   
-  <%= form_with(model: [@project, Assignment.new], local: true) do |form| %>
+  <div class="flex items-center gap-4 flex-shrink-0 whitespace-nowrap">
+    <h1 class="text-3xl font-extrabold text-gray-900"><%= @project.title %></h1>
+    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-bold uppercase"><%= @project.status %></span>
+  </div>
+
+  <div class="flex-1 flex items-center gap-4 min-w-[200px]">
     
-    <div style="margin-bottom: 10px;">
-      <%= form.label :user_id, "Select Employee" %><br>
-      <%= form.collection_select :user_id, User.all, :id, :email, prompt: "Choose a user..." %>
+    <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner relative">
+       <div class="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full transition-all duration-700 ease-out" 
+            style="width: <%= @project.percent_complete %>%">
+       </div>
     </div>
 
-    <div style="margin-bottom: 10px;">
-      <%= form.label :role, "Assign Role" %>
-      <%= form.text_field :role, placeholder: "e.g. Backend Lead" %>
+    <div class="text-xs font-bold text-gray-500 whitespace-nowrap">
+      <%= @project.percent_complete %>% Completed
     </div>
 
-    <%= form.submit "Add to Project", class: "btn-primary" %>
-  <% end %>
+  </div>
+
 </div>
+   
+     <div class="mt-6">
+      <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Project Description</h3>
+      
+      <div class="p-6 rounded-xl border border-gray-200 shadow-sm">
+        <p class="text-gray-700 text-lg leading-relaxed whitespace-pre-line" style="overflow-wrap: anywhere;">
+          <%= @project.description.presence || "No description provided." %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
 
-<hr>
-
-<div style="background: #f0f0f0; padding: 15px; margin-bottom: 20px; border-left: 5px solid #333;">
-  <h4>Create New Task</h4>
-  
-  <%= form_with(model: [@project, Task.new], local: true) do |form| %>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     
-    <div style="margin-bottom: 10px;">
-      <%= form.label :title %>
-      <%= form.text_field :title, required: true %>
-    </div>
-
-    <div style="margin-bottom: 10px;">
-      <%= form.label :priority %>
-      <%= form.select :priority, Task.priorities.keys.map { |w| [w.humanize, w] } %>
-    </div>
-
-    <div style="margin-bottom: 10px;">
-      <label>Tags:</label><br>
-      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-          <div style="margin-right: 10px;">
-            <%= b.check_box %>
-            <%= b.label %>
-          </div>
-        <% end %>
+    <div class="lg:col-span-2 space-y-8">
+      <%= render 'task_list', project: @project, tasks: @tasks %>
+      <div class="border-t border-gray-200 pt-8">
+        <%= render 'shared/comments', commentable: @project %>
       </div>
     </div>
 
-    <%= form.submit "Add Task", class: "btn btn-success" %>
-  <% end %>
-</div>
-
-
-<h3>Tasks</h3>
-<% @project.tasks.each do |task| %>
-  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-    <strong><%= link_to task.title, task_path(task) %></strong>
-    (<%= task.priority %> priority)
-    
-    <br>
-    Tags: 
-    <% task.tags.each do |tag| %>
-      <span style="background-color: <%= tag.tag_color %>; padding: 2px 5px; border-radius: 3px;">
-        <%= tag.name %>
-      </span>
-    <% end %>
-
-    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-      <em><%= task.comments.size %> Comments</em>
+    <div class="lg:col-span-1">
+      <%= render 'team_list', project: @project %>
     </div>
+
   </div>
-<% end %>
-
-
-
-<hr>
-
-
-<h3>Project Discussion</h3>
-
-<% @project.comments.each do |comment| %>
-  <div style="background: #f9f9f9; padding: 10px; margin-bottom: 5px;">
-    <strong><%= comment.user.first_name %>:</strong> <%= comment.body %>
-  </div>
-<% end %>
-
-<h4>Add Comment</h4>
-<%= form_with(model: [@project, @comment], local: true) do |form| %>
-  <div>
-    <%= form.text_area :body, rows: 3, style: "width: 100%;" %>
-  </div>
-  <%= form.submit "Post Comment" %>
-<% end %>
+</div>

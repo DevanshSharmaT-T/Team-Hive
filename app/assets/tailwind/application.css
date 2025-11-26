@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+
+.pagination {
+  @apply relative flex justify-center items-center w-full mt-10 mb-12 h-12;
+}
+
+/* SHARED STYLES (For Numbers, Current, Disabled) */
+.pagination a, .pagination em, .pagination span {
+  @apply px-4 py-2 border rounded-md text-sm font-medium transition-colors duration-200 mx-1;
+}
+
+/* NUMBERS (The links in the middle) */
+.pagination a {
+  @apply bg-white border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-blue-600 shadow-sm;
+}
+
+/* ACTIVE PAGE (Current) */
+.pagination .current {
+  @apply bg-blue-600 border-blue-600 text-white shadow-md transform scale-105;
+}
+
+/* DISABLED BUTTONS (Grayed out Prev/Next) */
+.pagination .disabled {
+  @apply bg-transparent border-transparent text-gray-300 cursor-not-allowed;
+}
+
+
+/* PREVIOUS BUTTON: Pin to bottom left */
+.pagination .previous_page {
+  @apply absolute left-0 bottom-0;
+  @apply bg-white border border-gray-300 text-gray-700 font-bold shadow-sm hover:bg-gray-50;
+}
+
+/* NEXT BUTTON: Pin to bottom right */
+.pagination .next_page {
+  @apply absolute right-0 bottom-0;
+  @apply bg-blue-600 border border-blue-600 text-white font-bold shadow-md hover:bg-blue-700;
+}
+
+/* Handle Disabled Prev/Next specifically to keep them positioned but gray */
+.pagination .previous_page.disabled, 
+.pagination .next_page.disabled {
+  @apply bg-gray-100 border-gray-200 text-gray-400 shadow-none pointer-events-none;
+}

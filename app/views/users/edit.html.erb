@@ -1,25 +1,46 @@
-<div style="max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
-  <h2>Edit Profile: <%= @user.first_name %></h2>
-
-  <%= form_with(model: @user, local: true) do |form| %>
-    
-    <div style="margin-bottom: 15px;">
-      <%= form.label :first_name %>
-      <%= form.text_field :first_name, class: "form-control", style: "width: 100%;" %>
+<div class="max-w-xl mx-auto mt-10">
+  
+  <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-gray-100">
+    <div class="bg-slate-900 px-6 py-4 border-b border-gray-200">
+      <h2 class="text-xl font-bold text-white">Edit Profile</h2>
+      <p class="text-blue-200 text-sm">Update details for <%= @user.email %></p>
     </div>
 
-    <div style="margin-bottom: 15px;">
-      <%= form.label :job_title %>
-      <%= form.text_field :job_title, class: "form-control", style: "width: 100%;" %>
-    </div>
+    <div class="p-8">
+      <%= form_with(model: @user, local: true, class: "space-y-6") do |form| %>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <%= form.label :first_name, class: "block text-sm font-bold text-gray-700 mb-1" %>
+            <%= form.text_field :first_name, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+          </div>
 
-    <div style="margin-bottom: 15px; background: #e8f4f8; padding: 10px; border-radius: 4px;">
-      <label style="font-weight: bold;">Reports To (Manager)</label>
-      <p style="font-size: 0.8em; margin-bottom: 5px; color: #666;">Select the user who manages this employee.</p>
-      
-      <%= form.collection_select :manager_id, @potential_managers, :id, :email, { include_blank: "No Manager (CEO)" }, { style: "width: 100%; padding: 8px;" } %>
-    </div>
+          <div>
+            <%= form.label :last_name, class: "block text-sm font-bold text-gray-700 mb-1" %>
+            <%= form.text_field :last_name, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+          </div>
+        </div>
 
-    <%= form.submit "Update Profile", style: "background: #333; color: white; padding: 10px 20px; border: none; cursor: pointer;" %>
-  <% end %>
+        <div>
+          <%= form.label :job_title, class: "block text-sm font-bold text-gray-700 mb-1" %>
+          <%= form.text_field :job_title, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+        </div>
+
+        <div class="bg-blue-50 p-5 rounded-md border border-blue-100">
+          <%= form.label :manager_id, "Reports To (Manager)", class: "block text-sm font-bold text-gray-800 mb-1" %>
+          <p class="text-xs text-gray-500 mb-3">Select the user who manages this employee.</p>
+          
+          <%= form.collection_select :manager_id, @potential_managers, :id, :email, 
+              { include_blank: "No Manager (CEO)" }, 
+              { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2" } %>
+        </div>
+
+        <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
+          <%= link_to "Cancel", user_dashboard_path(@user), class: "text-sm text-gray-500 hover:text-gray-900 font-medium" %>
+          
+          <%= form.submit "Update Profile", class: "cursor-pointer bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-6 rounded-md shadow hover:shadow-lg transition duration-200" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
