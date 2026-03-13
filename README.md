@@ -56,3 +56,4 @@ Follow these steps to get the project running on your local machine:
 ```bash
 git clone [https://github.com/yourusername/teamhive.git](https://github.com/yourusername/teamhive.git)
 cd teamhive
+```

@@ -1,0 +1,82 @@
+<h1>Projects#show</h1>
+<p>Find me in app/views/projects/show.html.erb</p>
+
+<h1><%= @project.title %></h1>
+<p>Status: <%= @project.status %></p>
+
+
+<hr>
+
+
+<h3>Team Members</h3>
+
+<ul>
+  <% @project.assignments.each do |assignment| %>
+    <li>
+      <strong><%= assignment.user.first_name %></strong> 
+      - <%= assignment.role %> 
+      (Report to: <%= assignment.user.manager&.first_name || "CEO" %>) </li>
+  <% end %>
+</ul>
+
+<div style="background: #eef; padding: 15px; margin-top: 20px; border-radius: 5px;">
+  <h4>Add New Member</h4>
+  
+  <%= form_with(model: [@project, Assignment.new], local: true) do |form| %>
+    
+    <div style="margin-bottom: 10px;">
+      <%= form.label :user_id, "Select Employee" %><br>
+      <%= form.collection_select :user_id, User.all, :id, :email, prompt: "Choose a user..." %>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <%= form.label :role, "Assign Role" %>
+      <%= form.text_field :role, placeholder: "e.g. Backend Lead" %>
+    </div>
+
+    <%= form.submit "Add to Project", class: "btn-primary" %>
+  <% end %>
+</div>
+
+<hr>
+
+
+<h3>Tasks</h3>
+<% @project.tasks.each do |task| %>
+  <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+    <strong><%= task.title %></strong> 
+    (<%= task.priority %> priority)
+    
+    <br>
+    Tags: 
+    <% task.tags.each do |tag| %>
+      <span style="background-color: <%= tag.tag_color %>; padding: 2px 5px; border-radius: 3px;">
+        <%= tag.name %>
+      </span>
+    <% end %>
+
+    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
+      <em><%= task.comments.count %> Comments</em>
+    </div>
+  </div>
+<% end %>
+
+
+<hr>
+
+
+<h3>Project Discussion</h3>
+
+<% @project.comments.each do |comment| %>
+  <div style="background: #f9f9f9; padding: 10px; margin-bottom: 5px;">
+    <strong><%= comment.user.first_name %>:</strong> <%= comment.body %>
+  </div>
+<% end %>
+
+<h4>Add Comment</h4>
+<%= form_with(model: [@project, @comment], local: true) do |form| %>
+  <div>
+    <%= form.text_area :body, rows: 3, style: "width: 100%;" %>
+  </div>
+  <%= form.submit "Post Comment" %>
+<% end %>
