@@ -1,53 +1,53 @@
 <div class="max-w-4xl mx-auto py-8">
   
-  <div class="border-b-4 pb-4 mb-8 flex justify-between items-end" style="border-color: <%= @tag.tag_color %>;">
+  <div class="tag-header" style="border-color: <%= @tag.tag_color %>;">
     <div>
-      <h1 class="flex items-center text-3xl font-bold text-gray-900">
+      <h1 class="tag-title">
         <span class="text-white px-4 py-1 rounded-lg mr-3 shadow-md" style="background-color: <%= @tag.tag_color %>;">
           <%= @tag.name %>
         </span>
         <span class="text-gray-400 font-light text-2xl">Explorer</span>
       </h1>
     </div>
-    <div class="text-gray-500 font-medium">
+    <div class="tag-count">
       Found <strong><%= @tasks.count %></strong> tasks
     </div>
   </div>
 
   <% if @tasks.any? %>
-    <div class="space-y-4">
+    <div class="tag-task-list">
       <% @tasks.each do |task| %>
         <% border_color = task.done? ? "border-green-500" : "border-gray-300" %>
         
-        <div class="bg-white border-l-4 <%= border_color %> rounded-r-lg shadow-sm p-5 hover:shadow-md transition-shadow border-y border-r border-gray-100">
-          <div class="flex justify-between items-start">
+        <div class="tag-task-item border-l-4 <%= border_color %>">
+          <div class="tag-task-header">
             <div>
-              <h3 class="text-lg font-bold text-gray-900 mb-1">
-                <%= link_to task.title, project_task_path(task.project, task), class: "hover:text-blue-600" %>
+              <h3 class="tag-task-title">
+                <%= link_to task.title, project_task_path(task.project, task), class: "project-link" %>
               </h3>
-              <div class="text-sm text-gray-500 mb-3">
+              <div class="tag-task-project">
                 in Project: 
-                <%= link_to task.project.title, project_path(task.project), class: "font-semibold text-gray-700 hover:text-blue-600 hover:underline" %>
+                <%= link_to task.project.title, project_path(task.project), class: "tag-task-project-link" %>
               </div>
             </div>
             
-            <div class="flex gap-2">
-               <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded uppercase"><%= task.status.humanize %></span>
-               <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded uppercase"><%= task.priority %></span>
+            <div class="tag-task-badges">
+               <span class="badge--inline"><%= task.status.humanize %></span>
+               <span class="badge--inline"><%= task.priority %></span>
             </div>
           </div>
         </div>
       <% end %>
     </div>
   <% else %>
-    <div class="bg-gray-50 rounded-lg p-12 text-center border-2 border-dashed border-gray-200">
-      <p class="text-gray-500 text-lg">No tasks found with this tag.</p>
+    <div class="tag-empty">
+      <p class="tag-empty-text">No tasks found with this tag.</p>
     </div>
   <% end %>
 
-  <div class="mt-8">
-    <%= link_to projects_path, class: "inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+  <div class="tag-back-link">
+    <%= link_to projects_path, class: "btn-secondary" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-secondary-icon">
         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
       </svg>
       Back to Projects

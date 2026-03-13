@@ -1,20 +1,20 @@
-<div class="max-w-6xl mx-auto mt-6">
-  <div class="mb-8 flex items-center gap-6 w-full">
+<div class="page-section">
+  <div class="show-header">
   
-  <div class="flex items-center gap-4 flex-shrink-0 whitespace-nowrap">
-    <h1 class="text-3xl font-extrabold text-gray-900"><%= @project.title %></h1>
-    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-bold uppercase"><%= @project.status %></span>
+  <div class="show-title-group">
+    <h1 class="show-title"><%= @project.title %></h1>
+    <span class="badge--lg"><%= @project.status %></span>
   </div>
 
-  <div class="flex-1 flex items-center gap-4 min-w-[200px]">
+  <div class="show-progress-group">
     
-    <div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner relative">
-       <div class="bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full transition-all duration-700 ease-out" 
+    <div class="progress-bar-bg--lg">
+       <div class="progress-bar-fill--lg" 
             style="width: <%= @project.percent_complete %>%">
        </div>
     </div>
 
-    <div class="text-xs font-bold text-gray-500 whitespace-nowrap">
+    <div class="progress-label">
       <%= @project.percent_complete %>% Completed
     </div>
 
@@ -22,10 +22,10 @@
 
 </div>
    
-     <div class="mt-6">
-      <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Project Description</h3>
-      <div class="p-6 rounded-xl border border-gray-200 shadow-sm">
-        <p class="text-gray-700 text-lg leading-relaxed whitespace-pre-line" style="overflow-wrap: anywhere;">
+     <div class="show-description-section">
+      <h3 class="show-description-label">Project Description</h3>
+      <div class="show-description-card">
+        <p class="show-description-text" style="overflow-wrap: anywhere;">
           <%= @project.description.presence || "No description provided." %>
         </p>
       </div>
@@ -33,16 +33,16 @@
   </div>
   <br>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="show-grid">
     
-    <div class="lg:col-span-2 space-y-8">
+    <div class="show-main-col">
       <%= render 'task_list', project: @project, tasks: @tasks %>
-      <div class="border-t border-gray-200 pt-8">
+      <div class="show-divider">
         <%= render 'shared/comments', commentable: @project %>
       </div>
     </div>
 
-    <div class="lg:col-span-1">
+    <div class="show-side-col">
       <%= render 'team_list', project: @project %>
     </div>
 

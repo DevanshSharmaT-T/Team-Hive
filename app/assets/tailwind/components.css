@@ -1,0 +1,1025 @@
+/* =============================================================
+   TEAMHIVE – COMPONENT CLASSES
+   All Tailwind utility classes extracted from views via @apply.
+   ============================================================= */
+
+
+/* ── Layout ─────────────────────────────────────────────────── */
+
+.page-body {
+  @apply bg-gray-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col;
+}
+
+.page-main {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow;
+}
+
+.page-section {
+  @apply max-w-6xl mx-auto mt-6;
+}
+
+.page-section--narrow {
+  @apply max-w-5xl mx-auto mt-6;
+}
+
+/* ── Flash Messages ──────────────────────────────────────────── */
+
+.flash-notice {
+  @apply bg-green-50 text-green-700 border-green-200 border rounded-md p-4 mb-6 flex items-center shadow-sm;
+}
+
+.flash-alert {
+  @apply bg-red-50 text-red-700 border-red-200 border rounded-md p-4 mb-6 flex items-center shadow-sm;
+}
+
+.flash-icon {
+  @apply w-5 h-5 mr-2;
+}
+
+/* ── Navbar ──────────────────────────────────────────────────── */
+
+.navbar {
+  @apply bg-slate-900 text-white shadow-md;
+}
+
+.navbar-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.navbar-inner {
+  @apply flex items-center justify-between h-16;
+}
+
+.navbar-brand {
+  @apply flex-shrink-0 flex items-center;
+}
+
+.navbar-brand-link {
+  @apply flex items-center text-xl font-bold tracking-wider;
+}
+
+.navbar-brand-icon {
+    /* here group was used group-hover */
+    @apply w-6 h-6 text-blue-500 mr-2 hover:text-blue-400 transition-colors;
+}
+
+.navbar-links {
+  @apply hidden md:block;
+}
+
+.navbar-links-inner {
+  @apply ml-10 flex items-baseline space-x-4;
+}
+
+.navbar-link {
+  @apply hover:bg-slate-700 text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors;
+}
+
+/* ── Nav Dropdown ────────────────────────────────────────────── */
+
+.nav-dropdown {
+  @apply relative inline-block text-left z-50;
+}
+
+/* Used for both the logged-in user menu trigger and the login button */
+.nav-dropdown-trigger {
+  @apply cursor-pointer bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium list-none flex items-center shadow-sm transition-colors;
+}
+
+.nav-dropdown-trigger-icon {
+  @apply w-3 h-3;
+}
+
+.nav-dropdown-panel {
+  @apply absolute right-0 mt-2 w-72 bg-white rounded-md shadow-lg py-1 text-gray-800 hidden;
+  /* group-open:block origin-top-right ring-1 ring-black ring-opacity-5 focus:outline-none z-50; */
+}
+
+/* Standard nav item (dashboard, edit profile) */
+.nav-dropdown-item {
+  @apply flex items-center px-4 py-2 text-sm hover:bg-blue-50 text-gray-700 hover:text-blue-700 transition-colors;
+}
+
+/* Danger variant (log out) */
+.nav-dropdown-item--danger {
+  @apply flex items-center px-4 py-2 text-sm hover:bg-red-50 text-gray-700 hover:text-red-600 transition-colors;
+}
+
+/* Block variant (sign-up / log-in links for guests) */
+.nav-dropdown-item--block {
+  @apply block px-4 py-2 text-sm hover:bg-blue-50 text-gray-700 hover:text-blue-700 transition-colors whitespace-nowrap;
+}
+
+.nav-dropdown-divider {
+  @apply border-t border-gray-100 my-1;
+}
+
+.nav-dropdown-item-icon {
+  @apply w-4 h-4 mr-2 text-gray-400;
+}
+
+.nav-dropdown-title {
+  @apply font-bold;
+}
+
+.nav-dropdown-subtitle {
+  @apply text-xs text-gray-400;
+}
+
+/* ── Page Headers ────────────────────────────────────────────── */
+
+.page-header {
+  @apply flex justify-between items-center mb-8;
+}
+
+.page-title {
+  @apply text-3xl font-bold text-gray-900 flex items-center;
+}
+
+.page-title-icon {
+  @apply w-8 h-8 text-blue-600 mr-3;
+}
+
+.section-header {
+  @apply flex justify-between items-center mb-6;
+}
+
+.section-title {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+
+/* Primary CTA — "New Project", "Add Task", etc. */
+.btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md transition duration-200 flex items-center;
+}
+
+.btn-primary-icon {
+  @apply w-5 h-5 mr-2;
+}
+
+/* Outline / secondary — back links, tags page */
+.btn-secondary {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50;
+}
+
+.btn-secondary-icon {
+  @apply w-4 h-4 mr-2;
+}
+
+/* Dark submit — project form, user edit form */
+.btn-submit {
+  @apply cursor-pointer bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-6 rounded-md shadow hover:shadow-lg transition duration-200;
+}
+
+/* Green submit — task form */
+.btn-submit--green {
+  @apply cursor-pointer bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow hover:shadow-lg transition duration-200;
+}
+
+/* Task status inline buttons */
+.btn-task-start {
+  @apply text-xs font-medium bg-white border border-blue-500 text-blue-600 hover:bg-blue-50 px-3 py-1 rounded transition-colors;
+}
+
+.btn-task-done {
+  @apply text-xs font-medium bg-green-500 text-white hover:bg-green-600 px-3 py-1 rounded shadow-sm transition-colors;
+}
+
+/* Icon-only action buttons */
+.btn-icon {
+  @apply text-gray-400 hover:text-blue-500 transition-colors;
+}
+
+.btn-icon--danger {
+  @apply text-gray-400 hover:text-red-500 transition-colors;
+}
+
+.btn-icon-svg {
+  @apply w-5 h-5;
+}
+
+/* "Add to Team" button inside team panel */
+.btn-team-add {
+  @apply w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-md shadow-sm transition-colors flex justify-center items-center;
+}
+
+.btn-team-add-icon {
+  @apply w-4 h-4 mr-2;
+}
+
+/* Auth page submit (login + sign-up) */
+.btn-auth-submit {
+  @apply w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition;
+}
+
+/* ── Page Card Wrappers (form pages) ─────────────────────────── */
+
+/* Shared outer card shell */
+.page-card {
+  @apply bg-white shadow-xl rounded-lg overflow-hidden border border-gray-100;
+}
+
+/* Dark slate header (projects new/edit, users edit) */
+.page-card-header {
+  @apply bg-slate-900 px-6 py-4 border-b border-gray-200;
+}
+
+/* Blue header (tasks new) */
+.page-card-header--blue {
+  @apply bg-blue-600 px-6 py-4 border-b border-blue-500;
+}
+
+/* Amber header (tasks edit) */
+.page-card-header--amber {
+  @apply bg-amber-500 px-6 py-4 border-b border-amber-600;
+}
+
+.page-card-header-title {
+  @apply text-xl font-bold text-white;
+}
+
+/* Title with icon flex row */
+.page-card-header-title--flex {
+  @apply text-xl font-bold text-white flex items-center;
+}
+
+.page-card-header-icon {
+  @apply w-6 h-6 mr-2;
+}
+
+.page-card-body {
+  @apply p-8;
+}
+
+/* ── Cards (general) ────────────────────────────────────────── */
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden;
+}
+
+.card--sm {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden;
+}
+
+.card-header {
+  @apply px-6 py-4 bg-gray-50 border-b border-gray-200 flex items-center;
+}
+
+.card-header--blue {
+  @apply px-6 py-4 bg-blue-50 border-b border-blue-100 flex items-center;
+}
+
+.card-header-icon-wrap {
+  @apply bg-white p-1.5 rounded-lg shadow-sm mr-3 text-gray-500;
+}
+
+.card-header-icon-wrap--blue {
+  @apply bg-white p-1.5 rounded-lg shadow-sm mr-3 text-blue-600;
+}
+
+.card-header-icon {
+  @apply w-6 h-6;
+}
+
+.card-header-title {
+  @apply text-lg font-bold text-gray-800;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+/* ── Project Cards (index grid) ──────────────────────────────── */
+
+.projects-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.project-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200 flex flex-col h-full overflow-hidden;
+}
+
+.project-card-header {
+  @apply px-5 py-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center;
+}
+
+.project-card-due {
+  @apply text-gray-400 font-medium text-xs;
+}
+
+.project-card-body {
+  @apply p-5 flex-grow;
+}
+
+.project-card-title {
+  @apply text-lg font-bold text-gray-900 mb-2;
+}
+
+.project-card-description {
+  @apply text-gray-500 text-sm mb-4 line-clamp-3;
+}
+
+.project-card-footer {
+  @apply px-5 py-3 bg-gray-50 border-t border-gray-100 flex justify-between items-center;
+}
+
+.project-open-link {
+  @apply text-blue-600 text-sm font-semibold hover:text-blue-800;
+}
+
+.project-actions {
+  @apply flex space-x-3;
+}
+
+.project-link {
+  @apply hover:text-blue-600 transition-colors;
+}
+
+/* ── Progress Bar ────────────────────────────────────────────── */
+
+/* Smaller (project cards index) */
+.progress-bar-bg {
+  @apply w-full bg-gray-200 rounded-full h-2 mb-2;
+}
+
+.progress-bar-fill {
+  @apply bg-green-500 h-2 rounded-full transition-all duration-500;
+}
+
+/* Larger (project show header) */
+.progress-bar-bg--lg {
+  @apply w-full bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner relative;
+}
+
+.progress-bar-fill--lg {
+  @apply bg-gradient-to-r from-green-400 to-green-600 h-full rounded-full transition-all duration-700 ease-out;
+}
+
+.progress-meta {
+  @apply flex justify-between text-xs text-gray-400 font-medium;
+}
+
+.progress-label {
+  @apply text-xs font-bold text-gray-500 whitespace-nowrap;
+}
+
+/* ── Badges / Pills ──────────────────────────────────────────── */
+
+/* Small pill (projects index status) */
+.badge {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide;
+}
+
+/* Larger pill (project show status) */
+.badge--lg {
+  @apply bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm font-bold uppercase;
+}
+
+/* Task status pill */
+.badge--status {
+  @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide;
+}
+
+/* Flat label (task priority / tag status in tags page) */
+.badge--inline {
+  @apply px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded uppercase;
+}
+
+/* Role badge (user dashboard) */
+.badge--role {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800;
+}
+
+/* Sub-label (job title chip next to name in subordinates list) */
+.badge--chip {
+  @apply ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full;
+}
+
+/* ── Forms ───────────────────────────────────────────────────── */
+
+.form-label {
+  @apply block text-sm font-bold text-gray-700 mb-1;
+}
+
+/* Standard text/date/select inputs (admin forms) */
+.form-input {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2;
+}
+
+.form-select {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2;
+}
+
+/* Read-only start date field */
+.form-input--disabled {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2 bg-gray-100 text-gray-500 cursor-not-allowed;
+}
+
+/* Auth input fields — merges login + signup (~92% overlap) */
+.form-input--auth {
+  @apply appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm transition;
+}
+
+.form-error-box {
+  @apply bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative;
+}
+
+.form-error-box--accent {
+  @apply bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-md;
+}
+
+.form-error-title {
+  @apply font-bold;
+}
+
+.form-error-list {
+  @apply list-disc list-inside mt-2;
+}
+
+.form-error-list--sm {
+  @apply list-disc list-inside mt-1 text-sm;
+}
+
+.form-footer {
+  @apply flex items-center justify-between pt-6 border-t border-gray-100 mt-4;
+}
+
+.form-cancel-link {
+  @apply text-sm text-gray-500 hover:text-gray-900 font-medium;
+}
+
+.form-tags-container {
+  @apply flex flex-wrap gap-4 p-4 bg-gray-50 rounded-md border border-gray-200;
+}
+
+.form-checkbox {
+  @apply h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500;
+}
+
+.form-checkbox-label {
+  @apply ml-2 text-sm text-gray-700 font-medium;
+}
+
+/* Blue tinted manager selection area */
+.form-info-box {
+  @apply bg-blue-50 p-5 rounded-md border border-blue-100;
+}
+
+.form-info-label {
+  @apply block text-sm font-bold text-gray-800 mb-1;
+}
+
+.form-info-hint {
+  @apply text-xs text-gray-500 mb-3;
+}
+
+/* ── Project / Task Show ─────────────────────────────────────── */
+
+.show-header {
+  @apply mb-8 flex items-center gap-6 w-full;
+}
+
+.show-title-group {
+  @apply flex items-center gap-4 flex-shrink-0 whitespace-nowrap;
+}
+
+.show-title {
+  @apply text-3xl font-extrabold text-gray-900;
+}
+
+.show-progress-group {
+  @apply flex-1 flex items-center gap-4;
+}
+
+.show-description-label {
+  @apply text-sm font-bold text-gray-500 uppercase tracking-wide mb-2;
+}
+
+.show-description-card {
+  @apply p-6 rounded-xl border border-gray-200 shadow-sm;
+}
+
+.show-description-text {
+  @apply text-gray-700 text-lg leading-relaxed whitespace-pre-line;
+}
+
+.show-description-section {
+  @apply mt-6;
+}
+
+.show-grid {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-8;
+}
+
+.show-main-col {
+  @apply lg:col-span-2 space-y-8;
+}
+
+.show-side-col {
+  @apply lg:col-span-1;
+}
+
+.show-divider {
+  @apply border-t border-gray-200 pt-8;
+}
+
+/* Task show page */
+.task-show-nav {
+  @apply flex justify-between items-center mb-6;
+}
+
+.task-back-link {
+  @apply text-gray-500 hover:text-gray-900 flex items-center text-sm font-medium transition-colors;
+}
+
+.task-edit-link {
+  @apply text-blue-600 hover:text-blue-800 flex items-center text-sm font-medium transition-colors;
+}
+
+.task-nav-icon {
+  @apply w-4 h-4 mr-1;
+}
+
+.task-show-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-8;
+}
+
+.task-show-header {
+  @apply px-6 py-5 bg-white border-b border-gray-100 flex justify-between items-start;
+}
+
+.task-show-title {
+  @apply text-2xl font-bold text-gray-900;
+}
+
+.task-show-meta {
+  @apply px-6 py-3 bg-gray-50 border-b border-gray-100 flex flex-wrap gap-6 text-xs text-gray-500 font-medium;
+}
+
+.task-show-meta-item {
+  @apply flex items-center;
+}
+
+.task-show-meta-icon {
+  @apply w-4 h-4 mr-1.5 text-gray-400;
+}
+
+.task-show-meta-link {
+  @apply hover:text-blue-600 underline decoration-gray-300 underline-offset-2;
+}
+
+.task-show-body {
+  @apply p-6;
+}
+
+.task-show-desc-label {
+  @apply text-sm font-bold text-gray-900 uppercase tracking-wide mb-3;
+}
+
+.task-show-desc-box {
+  @apply prose prose-sm text-gray-600 bg-gray-50/50 p-4 rounded-lg border border-gray-100;
+}
+
+.task-show-footer {
+  @apply mt-6 flex items-center justify-between;
+}
+
+.task-show-tags {
+  @apply flex flex-wrap gap-2;
+}
+
+.task-tag-link {
+  @apply text-xs font-bold text-white px-2 py-1 rounded shadow-sm hover:opacity-90 transition-opacity;
+}
+
+.task-priority-group {
+  @apply text-xs font-bold text-gray-500 uppercase flex items-center;
+}
+
+.task-priority-badge {
+  @apply ml-2 bg-gray-100 text-gray-800 px-2 py-1 rounded border border-gray-200;
+}
+
+.task-sticky-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-6;
+}
+
+/* ── Task List Items (project show) ──────────────────────────── */
+
+.task-list {
+  @apply space-y-4;
+}
+
+.task-item {
+  @apply bg-white border-l-4 shadow-sm rounded-r-lg p-5 hover:shadow-md transition-shadow duration-200;
+}
+
+.task-item-inner {
+  @apply flex justify-between items-start;
+}
+
+.task-item-body {
+  @apply flex-1;
+}
+
+.task-item-tags {
+  @apply flex flex-wrap gap-2 mb-2;
+}
+
+.task-tag {
+  @apply text-xs font-bold text-white px-2 py-1 rounded;
+}
+
+.task-priority-label {
+  @apply text-xs font-bold bg-gray-100 text-gray-700 border border-gray-200 px-2 py-1 rounded uppercase;
+}
+
+.task-item-actions {
+  @apply flex items-center gap-3;
+}
+
+/* ── Team Panel ──────────────────────────────────────────────── */
+
+.team-card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6;
+}
+
+.team-card-header {
+  @apply px-6 py-4 bg-gray-50 border-b border-gray-200;
+}
+
+.team-card-title {
+  @apply text-lg font-bold text-gray-800;
+}
+
+.team-list {
+  @apply divide-y divide-gray-100;
+}
+
+.team-list-item {
+  @apply px-6 py-4 flex justify-between items-center hover:bg-gray-50 transition-colors;
+}
+
+.team-member-link {
+  @apply text-blue-600 hover:underline;
+}
+
+.team-member-role {
+  @apply text-gray-500 text-sm;
+}
+
+.team-member-manager {
+  @apply text-gray-400 text-xs;
+}
+
+.team-card-footer {
+  @apply px-6 py-4 bg-gray-50 border-t border-gray-200;
+}
+
+.team-card-footer-label {
+  @apply text-sm font-bold text-gray-700 block mb-3;
+}
+
+.team-form {
+  @apply flex flex-col gap-3;
+}
+
+.team-form-field {
+  @apply w-full;
+}
+
+.team-form-select {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-2;
+}
+
+.team-form-input {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm py-2;
+}
+
+/* ── Comments ────────────────────────────────────────────────── */
+
+.comments-section {
+  @apply mt-8;
+}
+
+.comment-form-card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden;
+}
+
+.comment-form-header {
+  @apply bg-gray-100 px-4 py-2 border-b border-gray-200;
+}
+
+.comment-form-header-title {
+  @apply text-xs font-bold text-gray-500 uppercase tracking-wide;
+}
+
+.comment-form-body {
+  @apply p-4;
+}
+
+.comment-form-field {
+  @apply mb-3;
+}
+
+.comment-textarea {
+  @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm p-3;
+}
+
+.comment-form-actions {
+  @apply flex justify-end;
+}
+
+.comment-submit {
+  @apply cursor-pointer bg-slate-900 hover:bg-green-500 hover:text-black text-white text-sm font-bold py-2 px-4 rounded-md shadow-sm transition-colors duration-200;
+}
+
+.comment-discussion-title {
+  @apply text-lg font-bold text-gray-800 mb-4 flex items-center;
+}
+
+.comment-discussion-icon {
+  @apply w-5 h-5 mr-2 text-gray-500;
+}
+
+.comment-list {
+  @apply space-y-4 mb-6;
+}
+
+.comment-item {
+  @apply bg-gray-50 rounded-lg p-4 border border-gray-100 shadow-sm flex items-start gap-3;
+}
+
+.comment-avatar {
+  @apply flex-shrink-0 h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs;
+}
+
+.comment-content {
+  @apply flex-grow;
+}
+
+.comment-meta {
+  @apply flex justify-between items-baseline mb-1;
+}
+
+.comment-author {
+  @apply text-sm font-semibold text-gray-900;
+}
+
+.comment-time {
+  @apply text-xs text-gray-400;
+}
+
+.comment-body {
+  @apply text-sm text-gray-700 leading-relaxed;
+}
+
+.comment-empty {
+  @apply text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-200 text-gray-400 text-sm;
+}
+
+/* ── User Dashboard ──────────────────────────────────────────── */
+
+.user-header {
+  @apply flex flex-col md:flex-row md:items-center justify-between border-b border-gray-200 pb-6 mb-8;
+}
+
+.user-name {
+  @apply text-3xl font-extrabold text-gray-900 tracking-tight;
+}
+
+.user-subtitle {
+  @apply mt-1 text-sm text-gray-500 font-medium flex items-center;
+}
+
+.user-subtitle-divider {
+  @apply mx-2 text-gray-300;
+}
+
+.user-edit-btn {
+  @apply mt-4 md:mt-0;
+}
+
+.user-edit-link {
+  @apply inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.user-edit-icon {
+  @apply w-4 h-4 mr-2;
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-8;
+}
+
+/* Small avatar (subordinates list) */
+.user-avatar-sm {
+  @apply h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-xs;
+}
+
+/* Medium avatar (manager card) */
+.user-avatar-md {
+  @apply h-10 w-10 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-sm;
+}
+
+.reports-to-label {
+  @apply text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2;
+}
+
+.manager-card {
+  @apply flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100;
+}
+
+
+
+.manager-link {
+  @apply text-blue-700 font-bold hover:underline;
+}
+
+.manager-title {
+  @apply block text-xs text-blue-500;
+}
+
+.no-manager {
+  @apply p-3 bg-gray-50 rounded-lg border border-gray-100 text-gray-500 text-sm italic;
+}
+
+.subordinate-item {
+  @apply py-3 flex items-center hover:bg-gray-50 rounded px-2 transition-colors;
+}
+
+.subordinate-info {
+  @apply flex-1;
+}
+
+.subordinate-link {
+  @apply text-gray-900 font-medium hover:text-blue-600;
+}
+
+.subordinate-chevron {
+  @apply w-4 h-4 text-gray-300;
+}
+
+.no-reports {
+  @apply text-sm text-gray-400 italic pl-2;
+}
+
+.project-item {
+  @apply relative bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md hover:border-blue-300 transition-all;
+}
+
+.project-item-header {
+  @apply flex justify-between items-start;
+}
+
+.project-item-title {
+    /* here group was used group-hover */
+  @apply text-base font-bold text-gray-900 hover:text-blue-600 transition-colors;
+}
+
+.project-item-status {
+  @apply text-xs text-gray-500 mt-1;
+}
+
+.project-item-overlay {
+  @apply absolute inset-0;
+}
+
+.projects-empty {
+  @apply text-center py-10 bg-gray-50 rounded-lg border border-dashed border-gray-300;
+}
+
+.projects-empty-text {
+  @apply text-gray-500 text-sm;
+}
+
+/* ── Tags Page ───────────────────────────────────────────────── */
+
+.tag-header {
+  @apply border-b-4 pb-4 mb-8 flex justify-between items-end;
+}
+
+.tag-title {
+  @apply flex items-center text-3xl font-bold text-gray-900;
+}
+
+.tag-count {
+  @apply text-gray-500 font-medium;
+}
+
+.tag-task-list {
+  @apply space-y-4;
+}
+
+.tag-task-item {
+  @apply bg-white border-l-4 rounded-r-lg shadow-sm p-5 hover:shadow-md transition-shadow border-y border-r border-gray-100;
+}
+
+.tag-task-header {
+  @apply flex justify-between items-start;
+}
+
+.tag-task-title {
+  @apply text-lg font-bold text-gray-900 mb-1;
+}
+
+.tag-task-project {
+  @apply text-sm text-gray-500 mb-3;
+}
+
+.tag-task-project-link {
+  @apply font-semibold text-gray-700 hover:text-blue-600 hover:underline;
+}
+
+.tag-task-badges {
+  @apply flex gap-2;
+}
+
+.tag-empty {
+  @apply bg-gray-50 rounded-lg p-12 text-center border-2 border-dashed border-gray-200;
+}
+
+.tag-empty-text {
+  @apply text-gray-500 text-lg;
+}
+
+.tag-back-link {
+  @apply mt-8;
+}
+
+/* ── Auth Pages (Devise) ─────────────────────────────────────── */
+
+.auth-container {
+  @apply flex items-center justify-center;
+}
+
+/* Shared auth card — merges login card (~90% overlap with signup card) */
+.auth-card {
+  @apply bg-white p-8 rounded-2xl shadow-xl border border-gray-100;
+}
+
+.auth-title {
+  @apply text-3xl font-bold text-gray-800 text-center mb-6;
+}
+
+.auth-title--signup {
+  @apply text-3xl font-extrabold text-gray-900 text-center mb-8;
+}
+
+.auth-field {
+  @apply mb-4;
+}
+
+.auth-label {
+  @apply block text-sm font-semibold text-gray-700 mb-1;
+}
+
+.auth-remember {
+  @apply mb-4 flex items-center gap-2;
+}
+
+.auth-remember-label {
+  @apply text-sm text-gray-700;
+}
+
+.auth-links {
+  @apply text-center mt-6;
+}
+
+.signup-container {
+  @apply min-h-screen items-center justify-center py-12 px-4 sm:px-6 lg:px-8;
+}
+
+.signup-error {
+  @apply bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r-md;
+}
+
+.signup-error-inner {
+  @apply flex;
+}
+
+.signup-error-icon-wrap {
+  @apply flex-shrink-0;
+}
+
+.signup-error-icon {
+  @apply h-5 w-5 text-red-400;
+}
+
+.signup-error-body {
+  @apply ml-3;
+}
+
+.signup-error-title {
+  @apply text-sm font-medium text-red-800;
+}
+
+.signup-error-list {
+  @apply mt-2 text-sm text-red-700 list-disc list-inside;
+}
+
+.signup-hint {
+  @apply mt-1 text-xs text-gray-500;
+}

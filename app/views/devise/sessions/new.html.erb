@@ -1,44 +1,43 @@
-<div class="flex items-center justify-center">
-  <div class="bg-white p-8 rounded-2xl shadow-lg" style="width: 700px;">
+<div class="auth-container">
+  <div class="auth-card" style="width: 700px;">
 
-    <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">
+    <h2 class="auth-title">
       Log in
     </h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-      <div class="mb-4">
-        <%= f.label :email, class: "block text-sm font-semibold text-gray-700 mb-1" %>
+      <div class="auth-field">
+        <%= f.label :email, class: "auth-label" %>
           <%= f.email_field :email,
                 autofocus: true,
                 autocomplete: "email",
                 placeholder: "Enter your email",
-                class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" %>
+                class: "form-input--auth" %>
         </div>
 
-        <div class="mb-4">
-          <%= f.label :password, class: "block text-sm font-semibold text-gray-700 mb-1" %>
+        <div class="auth-field">
+          <%= f.label :password, class: "auth-label" %>
           <%= f.password_field :password,
                 autocomplete: "current-password",
                 placeholder: "Enter your password",
-                class: "w-full rounded-lg border border-gray-300 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" %>
+                class: "form-input--auth" %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="mb-4 flex items-center gap-2">
+          <div class="auth-remember">
             <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, class: "text-sm text-gray-700" %>
+            <%= f.label :remember_me, class: "auth-remember-label" %>
           </div>
         <% end %>
 
         <div>
-          <%= f.submit "Log in",
-              class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg shadow-md transition" %>
+          <%= f.submit "Log in", class: "btn-auth-submit" %>
         </div>
 
       <% end %>
 
-      <div class="text-center mt-6">
+      <div class="auth-links">
         <%= render "devise/shared/links" %>
       </div>
 

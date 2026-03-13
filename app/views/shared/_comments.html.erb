@@ -1,47 +1,47 @@
-<div class="mt-8">
-  <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-    <div class="bg-gray-100 px-4 py-2 border-b border-gray-200">
-      <h6 class="text-xs font-bold text-gray-500 uppercase tracking-wide">Add a Comment</h6>
+<div class="comments-section">
+  <div class="comment-form-card">
+    <div class="comment-form-header">
+      <h6 class="comment-form-header-title">Add a Comment</h6>
     </div>
-    <div class="p-4">
+    <div class="comment-form-body">
       <%= form_with(model: [commentable, Comment.new], id: "new_comment", local: true) do |form| %>
-        <div class="mb-3">
-          <%= form.text_area :body, rows: 3, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-sm p-3", placeholder: "Type your comment here...", required: true %>
+        <div class="comment-form-field">
+          <%= form.text_area :body, rows: 3, class: "comment-textarea", placeholder: "Type your comment here...", required: true %>
         </div>
-        <div class="flex justify-end">
-           <%= form.submit "Post Comment", class: "cursor-pointer bg-slate-900 hover:bg-green-500 hover:text-black text-white text-sm font-bold py-2 px-4 rounded-md shadow-sm transition-colors duration-200" %>
+        <div class="comment-form-actions">
+           <%= form.submit "Post Comment", class: "comment-submit" %>
         </div>
       <% end %>
     </div>
   </div>
 
   <br>
-  <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2 text-gray-500">
+  <h4 class="comment-discussion-title">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="comment-discussion-icon">
       <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
     </svg>
     Discussion
   </h4>
 
-  <div id="comments_list" class="space-y-4 mb-6">
+  <div id="comments_list" class="comment-list">
     <% if commentable.comments.any? %>
       <% commentable.comments.includes(:user).order( created_at: :desc).each do |comment| %>
-        <div class="bg-gray-50 rounded-lg p-4 border border-gray-100 shadow-sm flex items-start gap-3">
-          <div class="flex-shrink-0 h-8 w-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs">
+        <div class="comment-item">
+          <div class="comment-avatar">
             <%= comment.user.first_name[0] %>
           </div>
           
-          <div class="flex-grow">
-            <div class="flex justify-between items-baseline mb-1">
-              <strong class="text-sm font-semibold text-gray-900"><%= comment.user.first_name %></strong>
-              <span class="text-xs text-gray-400"><%= time_ago_in_words(comment.created_at) %> ago</span>
+          <div class="comment-content">
+            <div class="comment-meta">
+              <strong class="comment-author"><%= comment.user.first_name %></strong>
+              <span class="comment-time"><%= time_ago_in_words(comment.created_at) %> ago</span>
             </div>
-            <p class="text-sm text-gray-700 leading-relaxed"><%= comment.body %></p>
+            <p class="comment-body"><%= comment.body %></p>
           </div>
         </div>
       <% end %>
     <% else %>
-      <div class="text-center py-6 bg-gray-50 rounded-lg border border-dashed border-gray-200 text-gray-400 text-sm">
+      <div class="comment-empty">
         No comments yet. Be the first to start the discussion!
       </div>
     <% end %>

@@ -1,44 +1,44 @@
 <div class="max-w-xl mx-auto mt-10">
   
-  <div class="bg-white shadow-xl rounded-lg overflow-hidden border border-gray-100">
-    <div class="bg-slate-900 px-6 py-4 border-b border-gray-200">
-      <h2 class="text-xl font-bold text-white">Edit Profile</h2>
+  <div class="page-card">
+    <div class="page-card-header">
+      <h2 class="page-card-header-title">Edit Profile</h2>
       <p class="text-blue-200 text-sm">Update details for <%= @user.email %></p>
     </div>
 
-    <div class="p-8">
+    <div class="page-card-body">
       <%= form_with(model: @user, local: true, class: "space-y-6") do |form| %>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <%= form.label :first_name, class: "block text-sm font-bold text-gray-700 mb-1" %>
-            <%= form.text_field :first_name, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+            <%= form.label :first_name, class: "form-label" %>
+            <%= form.text_field :first_name, class: "form-input" %>
           </div>
 
           <div>
-            <%= form.label :last_name, class: "block text-sm font-bold text-gray-700 mb-1" %>
-            <%= form.text_field :last_name, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+            <%= form.label :last_name, class: "form-label" %>
+            <%= form.text_field :last_name, class: "form-input" %>
           </div>
         </div>
 
         <div>
-          <%= form.label :job_title, class: "block text-sm font-bold text-gray-700 mb-1" %>
-          <%= form.text_field :job_title, class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 px-4 py-2" %>
+          <%= form.label :job_title, class: "form-label" %>
+          <%= form.text_field :job_title, class: "form-input" %>
         </div>
 
-        <div class="bg-blue-50 p-5 rounded-md border border-blue-100">
-          <%= form.label :manager_id, "Reports To (Manager)", class: "block text-sm font-bold text-gray-800 mb-1" %>
-          <p class="text-xs text-gray-500 mb-3">Select the user who manages this employee.</p>
+        <div class="form-info-box">
+          <%= form.label :manager_id, "Reports To (Manager)", class: "form-info-label" %>
+          <p class="form-info-hint">Select the user who manages this employee.</p>
           
           <%= form.collection_select :manager_id, @potential_managers, :id, :email, 
               { include_blank: "No Manager (CEO)" }, 
-              { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2" } %>
+              { class: "form-select" } %>
         </div>
 
-        <div class="flex items-center justify-between pt-6 border-t border-gray-100 mt-4">
-          <%= link_to "Cancel", user_dashboard_path(@user), class: "text-sm text-gray-500 hover:text-gray-900 font-medium" %>
+        <div class="form-footer">
+          <%= link_to "Cancel", user_dashboard_path(@user), class: "form-cancel-link" %>
           
-          <%= form.submit "Update Profile", class: "cursor-pointer bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 px-6 rounded-md shadow hover:shadow-lg transition duration-200" %>
+          <%= form.submit "Update Profile", class: "btn-submit" %>
         </div>
       <% end %>
     </div>
