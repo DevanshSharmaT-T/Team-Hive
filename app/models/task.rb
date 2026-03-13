@@ -16,8 +16,16 @@ class Task < ApplicationRecord
 
   has_many :comments, as: :commentable
 
-  enum priority: { low: 0, medium: 1, high: 2}
-  enum status: { backlog: 0, in_progress: 1, done: 2 }
+  enum :priority, { 
+                    low: 0, 
+                    medium: 1, 
+                    high: 2
+                  }
+  enum :status, { 
+                  backlog: 0, 
+                  in_progress: 1, 
+                  done: 2 
+                }
 
   #validations
   validates :title, :description, presence: { message: "needed feilds" }
